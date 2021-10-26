@@ -1,0 +1,289 @@
+#include <iostream>
+using namespace std;
+
+void namabarang (string a) {
+	cout << "Anda memilih "<< a << endl ;
+    cout << "Kami merekomendasikan "<<a<<" yang sering digunakan" << endl ;
+}
+
+float bulan (string b){
+    int i, jenis ; 
+    float total = 0 ;
+ 	cout << "Ada berapa jenis "<<b<<" : "; cin >> jenis ;
+	for(i = 1; i <= jenis ; i++) {
+		int jumlah ;
+        float daya, lama, daya_bulan ;
+        cout << "Masukkan daya " << b <<" jenis ke-" << i << " berapa watt (bebas masukkan angka jumlah dayanya) : "  ; cin >> daya ;
+        cout << "Berapakah lama waktu penggunaan " << b << " (lama waktu dalam angka satuan jam per hari) : "  ; cin >> lama ;
+        cout << "Masukkan jumlah " << b <<" yang sejenis  : " ; cin >> jumlah ;
+        daya_bulan = daya * jumlah * lama * 30 ;
+        total = total + daya_bulan ;
+    }
+	return total ;
+}
+
+float bulanbeda (string c){
+    int i, jenis ;
+    float total = 0 ;
+ 	cout << "Ada berapa jenis "<<c<<" : "; cin >> jenis ;
+	for(i = 1; i <= jenis ; i++) {
+		int jumlah ;
+        float daya, lama, banyaknya, daya_bulan ;
+        cout << "Masukkan daya "<< c << " ke-" << i << " berapa watt (bebas masukkan angka jumlah dayanya) : "  ; cin >> daya ;
+        cout << "Berapakah lama waktu penggunaan "<< c << " (lama waktu dalam angka satuan jam) : " ; cin >> lama ;
+        cout << "Masukkan jumlah "<< c << " : "  ; cin >> jumlah ;
+        cout << "Selama satu bulan berapa kali menyalakan "<< c << " : " ; cin >> banyaknya ;
+        daya_bulan = daya * jumlah * lama * banyaknya ;
+        total = total + daya_bulan ;
+    }
+	return total ;
+}
+
+void biayabesar(string d) {
+	    cout << "Biaya listrik anda melebihi angka Rp." << d << ", alangkah baiknya anda lebih menghemat energi listrik" << endl ;
+    	cout << "Berikut beberapa cara untuk menghemat energi sekaligus biaya listrik." << endl ;		
+}
+
+void biayarendah(string e) {
+		cout << "Selamat! biaya listrik anda kurang dari Rp." << e << ", Terimakasih telah menghemat energi listrik." << endl ;
+   		cout << "Berikut beberapa cara untuk mempertahankan atau meningkatan penghematan energi listrik sekaligus mengurangi biaya listrik." << endl ;			
+}
+
+void biayatengah() {
+		cout << "Biaya listrik anda seperti pada umumnya, tapi alangkah lebih baik jika anda mau menigkatkan penghematan energi listrik" << endl ;
+		cout << "Berikut beberapa cara untuk meningkatkann penghematan energi listrik." << endl ;
+}
+
+int main()
+{
+    int i, barang, akhir, jenisbarang, jenis ;
+	float dayasebulan,  lainlain,  batasdaya, dayasebulankw ;
+    int counter = 0 ;
+    float biaya ;
+    string ulang = "Iya" ;
+    float totallampu = 0, totalAC = 0, totalkomputer = 0, totaltv = 0, totalkulkas = 0, totalsetrika = 0, totalpompaair = 0, 
+    totalmesincuci = 0, totalcharger = 0, totalbarang = 0 ;
+
+    cout << "======================================================" << endl ;
+    cout << "  MENGHITUNG PERKIRAAN PEMBAYARAN LISTRIK TIAP BULAN  " << endl ;
+    cout << "======================================================" << endl << endl ;
+    cout << "Sebelum memulai perhitungan, ada baiknya membaca pernyataan berikut." << endl ;
+    cout << "1. Perhatikan penggunaan daya tiap barang." << endl ;
+    cout << "2. Pastikan ketika menjawab tidak salah ." << endl ;
+    cout << "3. Pastikan jawaban berupa angka (Jika tidak, maka akan error)." << endl ;
+    cout << "4. Program ini hanya perkiran." << endl ;
+    cout << "5. Terjadinya perbedaan perhitungan dengan pembayaran asli, akibat dari perbedaan perkiraan daya yang dimasukkan." << endl ;
+    do
+        {
+            cout << endl;
+            cout << "Memilih barang" << endl ; 
+            cout << "1. Lampu" << endl << "2. AC" << endl << "3. Televisi" << endl << "4. Kulkas" << endl << "5. Charger" << endl ;
+            cout << "6. Komputer (Laptop)" << endl << "7. Setrika" << endl << "8. Mesin Cuci" << endl << "9. Pompa Air" << endl << "10. Lain-lain" << endl ;
+            cout << "Pilih barang (ketik angka) : " ; cin >> barang ;
+            cout << endl ;
+            switch (barang) 
+            {
+            case 1 :
+            namabarang("lampu");
+            cout << "LED 8 W, LED 13 W, LED 17 W, LED 20 W" << endl ;
+            cout << "CFL 9 W, CFL 14 W, CFL 19 W, CFK 23 W" << endl ;
+            cout << "Halo 29 W, Halo 43 W" << endl ;
+            cout << "Pijar 40 W, Pijar 60 W" << endl ;
+            totallampu = bulan("lampu");
+            cout << endl ;
+            cout << "Daya lampu selama sebulan sebesar " << totallampu << " Wh" << endl ;
+            break ;
+            
+            case 2 :
+            namabarang("AC") ;
+            cout << "1/2 PK = 400 W, 3/4 PK = 600 W, 1 PK = 840 W" << endl ;
+            cout << "3/2 PK = 1170 W, 2 PK = 1920 W" << endl ;            
+            totalAC = bulan("AC") ;
+            cout << endl ;
+            cout << "Daya AC selama sebulan sebesar " << totalAC << " Wh" << endl ;
+            break ;
+            
+            case 3 :
+            namabarang("televisi") ;
+			cout << "50 W, 100 W, 200 W (Tergantung pada ukuran TV yang anda gunakan)" << endl ;
+            totaltv = bulan("televisi") ;
+            cout << endl ;
+            cout << "Daya televisi selama sebulan sebesar " << totaltv << " Wh" << endl ;
+            break ;
+            
+            case 4 :
+            namabarang("kulkas") ;
+			cout << "1 Pintu 45 W & 70 W, 2 Pintu 115 W & 170 W, 3 Pintu 165 W & 230 W" << endl ;
+            totalkulkas = bulan("kulkas") ;
+			cout << endl ;
+            cout << "Daya kulkas selama sebulan sebesar " << totalkulkas << " Wh" << endl ;
+            break ;
+            
+            case 5 :
+            namabarang("charger") ;
+			cout << "Charger 10 W, 18 W, 27 W, 30 W, 65 W" << endl ;
+            totalcharger = bulan("charger") ;
+			cout << endl ;
+            cout << "Daya charger selama sebulan sebesar " << totalcharger << " Wh" << endl ;
+            break ;
+            
+            
+            case 6 :
+            namabarang("komputer") ;
+            cout << "Komputer 65 W, 150 W, 250 W, 400 W, 600 W" << endl ;
+            totalkomputer = bulanbeda("komputer") ;
+            cout << endl ;
+            cout << "Daya komputer selama sebulan sebesar " << totalkomputer << " Wh" << endl ;
+            break ;
+            
+            case 7 :
+            namabarang("setrika") ;
+			cout << "Sebagian besar 300 W" << endl ;
+            totalsetrika = bulanbeda("setrika") ;
+            cout << endl ;
+            cout << "Daya setrika selama sebulan sebesar " << totalsetrika << " Wh" << endl ;
+            break ;
+         
+            case 8 :
+            namabarang("mesin cuci") ;
+			cout << "Mesin Cuci 200 W, 250 W, 300 W, 350 W" << endl ;
+            totalmesincuci = bulanbeda("mesin cuci") ;
+			cout << endl ;
+            cout << "Daya mesin cuci selama sebulan sebesar " << totalmesincuci << " Wh" << endl ;
+            break ;
+            
+            case 9 :
+            namabarang("pompa air") ;
+			cout << "Pompa Air 250 W, 300 W, 500 W, 600 W, 900 W" << endl ;
+            totalpompaair = bulanbeda("pompa air") ;
+			cout << endl ;
+            cout << "Daya pompa air selama sebulan sebesar " << totalpompaair << " Wh" << endl ;
+            break ;
+            
+            case 10 :
+            cout << "Anda memilih lain lain" << endl ;
+            //Salah di bagian namabarang (sering return 0 sendiri)
+            cout << "Ada berapa jenis barang tambahan? : " ; cin >> jenisbarang ;
+            for(i = 1 ; i <= jenisbarang ; i++) {
+                int  dayabarang[i], lamabarang[i], jumlahbarang[i], banyaknyamenbarang[i], dayabarang_bulan[i] ;
+                string nama ;
+                cout << endl ;
+                cout << "Masukkan nama barang : " ; cin >> nama ;
+                cout << "Masukkan daya "<< nama << " berapa watt (bebas masukkan angka jumlah dayanya) : "  ; cin >> dayabarang[i] ;
+                cout << "Berapakah lama waktu penggunaan "<< nama << " (lama waktu dalam angka satuan jam) : " ; cin >> lamabarang[i] ;
+                cout << "Masukkan jumlah "<< nama  << "  : "  ; cin >> jumlahbarang[i] ;
+                cout << "Selama satu bulan berapa kali menggunakan "<< nama << " : " ; cin >> banyaknyamenbarang[i] ;
+                dayabarang_bulan[i] = dayabarang[i] * lamabarang[i] * jumlahbarang[i] * banyaknyamenbarang[i] ;
+                totalbarang = totalbarang + dayabarang_bulan[i] ;
+                }
+            cout << endl ;
+            cout << "Daya barang lainnya selama sebulan sebesar " << totalbarang << " Wh" << endl ;
+            break ;
+           
+            default :
+            cout << "Masukkan angka yang benar." << endl ;
+            break ;
+            
+            }
+        cout << endl ;
+        cout << "Apakah ingin menambah barang? (Iya atau Tidak) : " << endl ; cin >> ulang ;
+        counter++ ;
+        }
+    while (ulang == "Iya") ;
+    dayasebulan = totallampu + totalAC + totalkomputer + totaltv + totalkulkas + totalsetrika + totalpompaair + 
+    totalmesincuci + totalcharger + totalbarang ;
+    dayasebulankw = dayasebulan / 1000 ;
+    cout << "========================================================" << endl ;
+    cout << "Total daya sebulan adalah " << dayasebulan << " Wh atau sebesar " << dayasebulankw << " kWh" << endl ;
+    
+    cout << endl << "Berapakah batas daya di rumah anda (Masukkan angkanya saja) ? (900 VA, 1300 VA, 2200 VA, dan antara 3500 VA dan 6600) : " ; cin >> batasdaya ;
+    cout << endl ;
+    if (batasdaya == 900 ) {
+    	biaya = dayasebulankw * 1352 ;
+    	cout << "Perkiraann biaya listrik di rumah anda selama sebulan sebesar Rp." << biaya << endl << endl ;
+    	if (biaya >= 650000) {
+    		biayabesar("700000") ;
+		}
+		else if (biaya <= 300000) {
+			biayarendah("300000") ;	
+		}
+		else {
+			biayatengah() ;
+		}
+	}
+	else if (batasdaya == 1300 or batasdaya == 2200) {
+		biaya = dayasebulankw * 1444.77 ;
+		cout << "Perkiraann biaya listrik di rumah anda selama sebulan sebesar Rp." << biaya << endl ;
+		if (biaya >= 900000) {
+			biayabesar("1000000") ;
+		}
+		else if (biaya <= 400000) {
+			biayarendah("400000") ;
+		}
+		else {
+			biayatengah() ;
+		}	
+	}
+	else if (batasdaya >= 3500 and batasdaya <= 6600 ) {
+		biaya = dayasebulankw * 1444.77 ;
+		cout << "Perkiraann biaya listrik di rumah anda selama sebulan sebesar Rp." << biaya << endl ;
+		if (biaya >= 1400000) {
+			biayabesar("1500000") ;
+		}
+		else if (biaya <= 800000) {
+			biayarendah("800000") ;
+		}
+		else {
+			biayatengah() ;
+		}	
+	}
+    else {
+    	cout << "Masukkan angka yang benar." << endl ;
+	}
+	
+	cout << endl << "1. Cara Menghemat Listrik" << endl << "2. Daftar Pustaka (Referensi Data)" << endl << "3. Selesai" << endl << "Masukkan angka : " ; cin >> akhir ;
+	switch (akhir) {
+		case 1 :
+			cout << endl << "1. Gunakan alat elektronik seperlunya (Matikan jika tidak digunakan)." << endl ;
+			cout << "2. Mengganti lampu biasa dengan lampu hemat listrik (LED)). " << endl ;
+			cout << "3. Cabut kabel dari stopkontak ketika tidak digunakan. " << endl ;
+			cout << "4. Atur pemakaian alat elektronik yang membutuhkan daya besar. " << endl ;
+			cout << "5. Jangan berlebihan menggunakan komputer atau laptop atau televisi secara barengan. " << endl ;
+			cout << "6. Turunkan suhu AC dan kulkas (Bersihkan bagian freezer pada kulkas). " << endl ;
+			cout << "7. Gunakan kipas angin sebagai pengganti AC. " << endl ;
+			cout << "8. Keringkan pakaian secara alami. " << endl ;
+			cout << "9. Jangan membuang buang air hingga mengharuskan penggunaan pompa air yang berlebihan. " << endl ;
+			cout << "10. Mulailah kebiasaan hemat listrik dari diri sendiri hingga bersama sama (saling mengingatkan). " << endl ;
+			break ;
+			
+		case 2 :
+			cout << endl <<  "Lampu : https://www.s-gala.com/blog-post/watt-lampu " << endl ;
+			cout << "AC : https://www.pricebook.co.id/article/news/2020/07/22/10157/pengertian-pk-ac-dan-daya-watt " << endl ;
+			cout << "Televisi : https://m.dekoruma.com/artikel/74958/memilih-pompa-air " << endl ;
+			cout << "Kulkas : https://www.pricebook.co.id/article/news/2020/07/22/10157/pengertian-pk-ac-dan-daya-watt " << endl ;
+			cout << "Charger : https://c.mi.com/thread-2396656-1-1.html " << endl ;
+            cout << "Komputer (Laptop) : https://rexus.id/tagihan-listrik-melonjak-ini-cara-hemat-konsumsi-listrik-komputer-gaming/ " << endl ;
+			cout << "Setrika : https://www.rumah.com/berita-properti/2017/10/162244/catat-ini-peralatan-di-rumah-yang-boros-listrik " << endl ;
+			cout << "Mesin Cuci : https://www.rumah.com/berita-properti/2017/10/162244/catat-ini-peralatan-di-rumah-yang-boros-listrik " << endl ;
+			cout << "Pompa Air : https://m.dekoruma.com/artikel/74958/memilih-pompa-air " << endl ;	
+			break ;
+			
+		case 3 :
+			cout << endl << "Terimakasih telah menggunakan program ini." << endl ;
+			cout << "Jangan lupa menghemat listrik, karena perubahan kecil di diri kalian, bisa berdampak besar di lingkungan kita" << endl ;
+			cout << endl ;
+			cout << "---------------------------------------------------------" << endl << "Dibuat oleh : Yoga, kelompok Octave" ;
+			return 0 ;
+			
+		default :
+			break ;
+	}
+	if (akhir < 3 or akhir > 3 ) {
+		cout << endl ;
+		cout << "Terimakasih telah menggunakan program ini." << endl ;
+		cout << "Jangan lupa menghemat listrik, karena perubahan kecil di diri kalian, berdampak besar di lingkungan kita" << endl ;
+		cout << endl ;
+		cout << "---------------------------------------------------------" << endl << "Dibuat oleh : Yoga, kelompok Octave" ;
+	}
+    return 0 ;
+}
